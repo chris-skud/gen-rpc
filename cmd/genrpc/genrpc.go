@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/vektra/mockery/mockery"
+	"github.com/chris-skud/genrpc/genrpc"
 )
 
 const regexMetadataChars = "\\.+*?()|[]{}^$"
@@ -56,11 +56,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	var osp mockery.OutputStreamProvider
+	var osp genrpc.OutputStreamProvider
 	if config.fPrint {
-		osp = &mockery.StdoutStreamProvider{}
+		osp = &genrpc.StdoutStreamProvider{}
 	} else {
-		osp = &mockery.FileOutputStreamProvider{
+		osp = &genrpc.FileOutputStreamProvider{
 			BaseDir:   config.fOutput,
 			InPackage: config.fIP,
 			TestOnly:  config.fTO,
@@ -68,14 +68,14 @@ func main() {
 		}
 	}
 
-	visitor := &mockery.GeneratorVisitor{
+	visitor := &genrpc.GeneratorVisitor{
 		InPackage:   config.fIP,
 		Note:        config.fNote,
 		Osp:         osp,
 		PackageName: config.fOutpkg,
 	}
 
-	walker := mockery.Walker{
+	walker := genrpc.Walker{
 		BaseDir:   config.fDir,
 		Recursive: recursive,
 		Filter:    filter,

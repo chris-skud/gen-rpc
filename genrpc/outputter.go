@@ -1,4 +1,4 @@
-package mockery
+package genrpc
 
 import (
 	"fmt"
@@ -58,9 +58,9 @@ func (this *FileOutputStreamProvider) GetWriter(iface *Interface, pkg string) (i
 
 func (this *FileOutputStreamProvider) filename(name string) string {
 	if this.InPackage && this.TestOnly {
-		return "mock_" + name + "_test.go"
+		return "rpc_" + name + "_test.go"
 	} else if this.InPackage {
-		return "mock_" + name + ".go"
+		return "rpc_" + name + ".go"
 	} else if this.TestOnly {
 		return name + "_test.go"
 	}

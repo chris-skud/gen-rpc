@@ -1,4 +1,4 @@
-package mockery
+package genrpc
 
 import (
 	"path/filepath"
@@ -186,7 +186,7 @@ func (s *GeneratorSuite) TestGeneratorPrologue() {
 	expected := `package mocks
 
 import mock "github.com/stretchr/testify/mock"
-import test "github.com/vektra/mockery/mockery/fixtures"
+import test "github.com/chris-skud/genrpc/genrpc/fixtures"
 
 `
 	s.checkPrologueGeneration(generator, expected)
@@ -198,7 +198,7 @@ func (s *GeneratorSuite) TestGeneratorPrologueWithImports() {
 
 import http "net/http"
 import mock "github.com/stretchr/testify/mock"
-import test "github.com/vektra/mockery/mockery/fixtures"
+import test "github.com/chris-skud/genrpc/genrpc/fixtures"
 
 `
 	s.checkPrologueGeneration(generator, expected)
@@ -209,10 +209,10 @@ func (s *GeneratorSuite) TestGeneratorPrologueWithMultipleImportsSameName() {
 
 	expected := `package mocks
 
-import fixtureshttp "github.com/vektra/mockery/mockery/fixtures/http"
+import fixtureshttp "github.com/chris-skud/genrpc/genrpc/fixtures/http"
 import http "net/http"
 import mock "github.com/stretchr/testify/mock"
-import test "github.com/vektra/mockery/mockery/fixtures"
+import test "github.com/chris-skud/genrpc/genrpc/fixtures"
 
 `
 	s.checkPrologueGeneration(generator, expected)
@@ -968,7 +968,7 @@ func (s *GeneratorSuite) TestPrologueWithImportSameAsLocalPackage() {
 
 import fixtures "` + s.getInterfaceRelPath(generator.iface) + `"
 import mock "github.com/stretchr/testify/mock"
-import test "github.com/vektra/mockery/mockery/fixtures/test"
+import test "github.com/chris-skud/genrpc/genrpc/fixtures/test"
 
 `
 
@@ -981,10 +981,10 @@ func (s *GeneratorSuite) TestPrologueWithImportFromNestedInterface() {
 	)
 	expected := `package mocks
 
-import fixtureshttp "github.com/vektra/mockery/mockery/fixtures/http"
+import fixtureshttp "github.com/chris-skud/genrpc/genrpc/fixtures/http"
 import http "net/http"
 import mock "github.com/stretchr/testify/mock"
-import test "github.com/vektra/mockery/mockery/fixtures"
+import test "github.com/chris-skud/genrpc/genrpc/fixtures"
 
 `
 
